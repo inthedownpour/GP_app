@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "856298405691",
+    "project_id": "gpapp-2b775",
+    "storage_bucket": "gpapp-2b775.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856298405691:android:6d5429fcf60ec7675f011e",
+        "android_client_info": {
+          "package_name": "sdk.chat.gp_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "856298405691-d451fulpi56ui2qrrjsohtss8qarmh8l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sdk.chat.gp_app",
+            "certificate_hash": "a074dda903c782017d293df974c1cd46df98dccf"
+          }
+        },
+        {
+          "client_id": "856298405691-d25urnpjbhvlv8uh6b3vjorkotcg76mu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA357RojjQVP25uj3goIYhi6bRDI3DYSak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "856298405691-d25urnpjbhvlv8uh6b3vjorkotcg76mu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
