@@ -14,6 +14,9 @@ public class PostInfo implements Serializable {
     private Date createdAt;
     private String id;
 
+    //수정 - endDate
+    private String endDate;
+
     public PostInfo(String title, ArrayList<String> contents, ArrayList<String> formats, String publisher, Date createdAt, String id){
         this.title = title;
         this.contents = contents;
@@ -38,6 +41,7 @@ public class PostInfo implements Serializable {
         docData.put("formats",formats);
         docData.put("publisher",publisher);
         docData.put("createdAt",createdAt);
+        docData.put("endDate", endDate);
         return  docData;
     }
 
@@ -77,4 +81,5 @@ public class PostInfo implements Serializable {
     public void setId(String id){
         this.id = id;
     }
+
 }

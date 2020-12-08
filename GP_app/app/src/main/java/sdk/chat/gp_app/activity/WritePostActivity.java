@@ -35,6 +35,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -67,6 +68,9 @@ public class WritePostActivity extends BasicActivity {
     private PostInfo postInfo;
     private int pathCount, successCount;
 
+    //수정파트 - endDate
+    private EditText endDate;
+
     //수정파트
     Calendar myCalendar = Calendar.getInstance();
 
@@ -88,7 +92,7 @@ public class WritePostActivity extends BasicActivity {
         setToolbarTitle("게시글 작성");
 
         //수정파트
-        EditText et_Date = (EditText) findViewById(R.id.Date);
+        EditText et_Date = (EditText) findViewById(R.id.endDate);
         et_Date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +111,10 @@ public class WritePostActivity extends BasicActivity {
         contentsEditText = findViewById(R.id.contentsEditText);
         titleEditText = findViewById(R.id.titleEditText);
 
+        //수정파트 - endDate
+        endDate = findViewById(R.id.endDate);
+
+
         findViewById(R.id.check).setOnClickListener(onClickListener);
         findViewById(R.id.image).setOnClickListener(onClickListener);
         findViewById(R.id.video).setOnClickListener(onClickListener);
@@ -115,9 +123,12 @@ public class WritePostActivity extends BasicActivity {
         findViewById(R.id.delete).setOnClickListener(onClickListener);
 
 
-
         buttonsBackgroundLayout.setOnClickListener(onClickListener);
         contentsEditText.setOnFocusChangeListener(onFocusChangeListener);
+
+        //수정파트 - endDate
+        endDate.setOnFocusChangeListener(onFocusChangeListener);
+
         titleEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -138,7 +149,7 @@ public class WritePostActivity extends BasicActivity {
         String myFormat = "yyyy/MM/dd";    // 출력형식   2018/11/28
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
 
-        EditText et_date = (EditText) findViewById(R.id.Date);
+        EditText et_date = (EditText) findViewById(R.id.endDate);
         et_date.setText(sdf.format(myCalendar.getTime()));
     }
 
@@ -258,6 +269,7 @@ public class WritePostActivity extends BasicActivity {
             loaderLayout.setVisibility(View.VISIBLE);
             final ArrayList<String> contentsList = new ArrayList<>();
             final ArrayList<String> formatList = new ArrayList<>();
+
             user = FirebaseAuth.getInstance().getCurrentUser();
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
@@ -282,7 +294,9 @@ public class WritePostActivity extends BasicActivity {
                             formatList.add("image");
                         }else if (isVideoFile(path)){
                             formatList.add("video");
-                        }else{
+                        }//수정파트
+                        //else if()
+                        else{
                             formatList.add("text");
                         }
                         String[] pathArray = path.split("\\.");
@@ -378,6 +392,8 @@ public class WritePostActivity extends BasicActivity {
                     }
                 } else if (i == 0) {
                     contentsEditText.setText(contents);
+                    //수정파트 - endDate
+                    endDate.setText(contents);
                 }
             }
         }
