@@ -105,7 +105,7 @@ public class WritePostActivity extends BasicActivity {
         ////
 
 
-        parent = findViewById(R.id.contentsLayout);
+        parent = findViewById(R.id.contentsLayout); //LinearLayout
         buttonsBackgroundLayout = findViewById(R.id.buttonsBackgroundLayout);
         loaderLayout = findViewById(R.id.loaderLyaout);
         contentsEditText = findViewById(R.id.contentsEditText);
@@ -268,6 +268,7 @@ public class WritePostActivity extends BasicActivity {
 
         }
     };
+
 
     View.OnFocusChangeListener onFocusChangeListener = new View.OnFocusChangeListener() {
         @Override

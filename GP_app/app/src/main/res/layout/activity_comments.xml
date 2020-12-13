@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:focusableInTouchMode="true">-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/editTextTextPersonName"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:ems="10"-->
+<!--        android:hint="댓글을 입력하시오."-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:singleLine="true"-->
+<!--        tools:layout_editor_absoluteY="682dp"-->
+<!--        tools:ignore="MissingConstraints" />-->
+
+<!--&lt;!&ndash;    <ImageView&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/imageView3"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="49dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="49dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:background="#00FFFFFF"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintTop_toTopOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintVertical_bias="0.995"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:srcCompat="@drawable/abc_vector_test"&ndash;&gt;-->
+<!--&lt;!&ndash;        tools:layout_editor_absoluteX="400dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:tint="@color/colorAccent"&ndash;&gt;-->
+<!--&lt;!&ndash;        tools:ignore="MissingConstraints" />&ndash;&gt;-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+<!--게시글 화면에서 볼 때 나타나는 xml-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        layout="@layout/view_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"/>
+
+    <ListView
+        android:id="@+id/commentListView"
+        android:layout_width="393dp"
+        android:layout_height="599dp"
+        android:layout_below="@+id/toolbar">
+
+
+    </ListView>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/commentLinearLayout"
+        android:weightSum="10">
+
+        <EditText
+            android:layout_width="1600sp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:hint="Comment"
+            android:id="@+id/EditTextComment"
+            android:background="#FFFFFF"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="send"
+            android:id="@+id/commentButton"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

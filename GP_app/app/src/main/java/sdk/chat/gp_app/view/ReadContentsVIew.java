@@ -73,7 +73,7 @@ public class ReadContentsVIew extends LinearLayout {
 
         //수정
         String EndDateList = postInfo.getEndDate();
-        String EndDateList2 = postInfo.getEndDate();
+        String EndDateList2 = postInfo.getPeopleNumber();
 
         Log.d(EndDateList, "endDataList ReadContentsView76: " + EndDateList);
 
@@ -112,8 +112,8 @@ public class ReadContentsVIew extends LinearLayout {
                         .createMediaSource(Uri.parse(contents));
 
                 //수정
-                MediaSource videoSource2 = new ProgressiveMediaSource.Factory(dataSourceFactory)
-                        .createMediaSource(Uri.parse(endDate));
+//                MediaSource videoSource2 = new ProgressiveMediaSource.Factory(dataSourceFactory)
+//                        .createMediaSource(Uri.parse(endDate));
 
 
                 SimpleExoPlayer player = ExoPlayerFactory.newSimpleInstance(context);
@@ -146,7 +146,7 @@ public class ReadContentsVIew extends LinearLayout {
 
                 TextView textView3 = (TextView) layoutInflater.inflate(R.layout.view_contents_button, this, false);
                 //endDate = findViewById(R.id.endDate).toString();
-                textView2.setText(peopleNumber);
+                textView3.setText(peopleNumber);
                 contentsLayout.addView(textView3);
 
             }

@@ -21,15 +21,22 @@
             android:padding="10dp">
 
             <sdk.chat.gp_app.view.ReadContentsVIew
+                android:id="@+id/readContentsView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/readContentsView">
-            </sdk.chat.gp_app.view.ReadContentsVIew>
+                android:layout_height="151dp"></sdk.chat.gp_app.view.ReadContentsVIew>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Comment"
+                android:id="@+id/commentButton"/>
+
         </LinearLayout>
 
 
 
 
     </ScrollView>
+
 
 </RelativeLayout>

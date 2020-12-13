@@ -6,8 +6,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.sql.DatabaseMetaData;
 
 import sdk.chat.gp_app.R;
 import sdk.chat.gp_app.listener.OnPostListener;
@@ -20,6 +27,10 @@ public class PostActivity extends BasicActivity {
     private FirebaseHelper firebaseHelper;
     private ReadContentsVIew readContentsVIew;
     private LinearLayout contentsLayout;
+    private Button btnAddComment;
+
+    //댓글
+    FirebaseFirestore firebaseFirestore;
 
     //수정
     private TextView endDateTextView;
@@ -27,14 +38,12 @@ public class PostActivity extends BasicActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post); //activity_post와 연결됨
+        setContentView(R.layout.activity_post);
 
         postInfo = (PostInfo) getIntent().getSerializableExtra("postInfo");
-        //getIntent: 이 액티비티에서 시작한 intent를 리턴
-        //getSerializableExtra: intent에서 확장 데이터를 검색
 
-        contentsLayout = findViewById(R.id.contentsLayout); //id가 activitiy_post / item_post 둘다 있음 //????
-        readContentsVIew = findViewById(R.id.readContentsView); //id가 activitiy_write_post / view_post
+        contentsLayout = findViewById(R.id.contentsLayout);
+        readContentsVIew = findViewById(R.id.readContentsView);
 
         //수정
         endDateTextView = findViewById(R.id.endDateTextView);
@@ -42,6 +51,19 @@ public class PostActivity extends BasicActivity {
         firebaseHelper = new FirebaseHelper(this); //firebase 연결
         firebaseHelper.setOnPostListener(onPostListener);
         uiUpdate(); //업데이트
+
+
+        //댓글
+        btnAddComment = findViewById(R.id.commentButton);
+        firebaseFirestore = firebaseFirestore.getInstance();
+        btnAddComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CommentActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
     @Override
@@ -103,4 +125,6 @@ public class PostActivity extends BasicActivity {
         intent.putExtra("postInfo", postInfo);
         startActivityForResult(intent, 0);
     }
+
+
 }
