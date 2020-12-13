@@ -70,6 +70,7 @@ public class WritePostActivity extends BasicActivity {
 
     //수정파트 - endDate
     private EditText endDate;
+    private EditText peopleNumber;
 
     //수정파트
     Calendar myCalendar = Calendar.getInstance();
@@ -101,7 +102,6 @@ public class WritePostActivity extends BasicActivity {
         });
 
 
-
         ////
 
 
@@ -113,6 +113,8 @@ public class WritePostActivity extends BasicActivity {
 
         //수정파트 - endDate
         endDate = findViewById(R.id.endDate);
+        peopleNumber = findViewById(R.id.peopleNumber);
+
 
 
         findViewById(R.id.check).setOnClickListener(onClickListener);
@@ -128,6 +130,8 @@ public class WritePostActivity extends BasicActivity {
 
         //수정파트 - endDate
         endDate.setOnFocusChangeListener(onFocusChangeListener);
+        peopleNumber.setOnFocusChangeListener(onFocusChangeListener);
+
 
         titleEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -137,6 +141,17 @@ public class WritePostActivity extends BasicActivity {
                 }
             }
         });
+
+        //수정파트 - endDate
+        endDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b) {
+                    selectedEditText = null;
+                }
+            }
+        });
+
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
@@ -226,7 +241,7 @@ public class WritePostActivity extends BasicActivity {
                 case R.id.delete:
                     final View selectedView = (View) selectedImageVIew.getParent();
                     String path = pathList.get(parent.indexOfChild(selectedView) - 1);
-                    if(isStorageUrl(path)){
+                    if (isStorageUrl(path)) {
                         StorageReference desertRef = storageRef.child("posts/" + postInfo.getId() + "/" + storageUrlToName(path));
                         desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -242,7 +257,7 @@ public class WritePostActivity extends BasicActivity {
                                 showToast(WritePostActivity.this, "파일을 삭제하는데 실패하였습니다.");
                             }
                         });
-                    }else{
+                    } else {
                         pathList.remove(parent.indexOfChild(selectedView) - 1);
                         parent.removeView(selectedView);
                         buttonsBackgroundLayout.setVisibility(View.GONE);
@@ -270,12 +285,23 @@ public class WritePostActivity extends BasicActivity {
             final ArrayList<String> contentsList = new ArrayList<>();
             final ArrayList<String> formatList = new ArrayList<>();
 
+            //수정
+            //final ArrayList<String> EndDateList = new ArrayList<>();//new ArrayList<>();
+
             user = FirebaseAuth.getInstance().getCurrentUser();
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
             FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
             final DocumentReference documentReference = postInfo == null ? firebaseFirestore.collection("posts").document() : firebaseFirestore.collection("posts").document(postInfo.getId());
             final Date date = postInfo == null ? new Date() : postInfo.getCreatedAt();
+
+            //수정파트 - endDate
+            final String endDate = ((EditText) findViewById(R.id.endDate)).getText().toString();
+            final String peopleNumber = ((EditText) findViewById(R.id.peopleNumber)).getText().toString();
+            Log.d(endDate, "endData WritePostActivity296: " + endDate);
+
+
+
             for (int i = 0; i < parent.getChildCount(); i++) {
                 LinearLayout linearLayout = (LinearLayout) parent.getChildAt(i);
                 for (int ii = 0; ii < linearLayout.getChildCount(); ii++) {
@@ -290,13 +316,13 @@ public class WritePostActivity extends BasicActivity {
                         String path = pathList.get(pathCount);
                         successCount++;
                         contentsList.add(path);
-                        if(isImageFile(path)){
+                        if (isImageFile(path)) {
                             formatList.add("image");
-                        }else if (isVideoFile(path)){
+                        } else if (isVideoFile(path)) {
                             formatList.add("video");
                         }//수정파트
                         //else if()
-                        else{
+                        else {
                             formatList.add("text");
                         }
                         String[] pathArray = path.split("\\.");
@@ -318,9 +344,14 @@ public class WritePostActivity extends BasicActivity {
                                         public void onSuccess(Uri uri) {
                                             successCount--;
                                             contentsList.set(index, uri.toString());
+
                                             if (successCount == 0) {
-                                                PostInfo postInfo = new PostInfo(title, contentsList, formatList, user.getUid(), date);
+                                                PostInfo postInfo = new PostInfo(title, contentsList, formatList, user.getUid(), date, endDate, peopleNumber);
                                                 storeUpload(documentReference, postInfo);
+                                                //Log.d(endDate, "endData WritePostActivity345: " + endDate);
+                                                Log.d(peopleNumber, "peopleNumber WritePostActivity352: " + peopleNumber);
+
+
                                             }
                                         }
                                     });
@@ -334,7 +365,11 @@ public class WritePostActivity extends BasicActivity {
                 }
             }
             if (successCount == 0) {
-                storeUpload(documentReference, new PostInfo(title, contentsList, formatList, user.getUid(), date));
+                storeUpload(documentReference, new PostInfo(title, contentsList, formatList, user.getUid(), date, endDate, peopleNumber));
+                //Log.d(endDate, "endData WritePostActivity361: " + endDate);
+                Log.d(peopleNumber, "peopleNumber WritePostActivity352: " + peopleNumber);
+
+
             }
         } else {
             showToast(WritePostActivity.this, "제목을 입력해주세요.");
@@ -393,7 +428,7 @@ public class WritePostActivity extends BasicActivity {
                 } else if (i == 0) {
                     contentsEditText.setText(contents);
                     //수정파트 - endDate
-                    endDate.setText(contents);
+                    //endDate.setText(contents);
                 }
             }
         }
@@ -404,35 +439,4 @@ public class WritePostActivity extends BasicActivity {
         intent.putExtra(INTENT_MEDIA, media);
         startActivityForResult(intent, requestCode);
     }
-
-
-
-
-    //수정파트!!
-
-//    private SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-M-d");
-//
-//    DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-//        @Override
-//        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-//            TextView tv = findViewById(R.id.vEndDate);
-//
-//            tv.setText(String.format(mFormat.toString()));
-//        }
-//    };
-//
-//    public void mOnClick_DatePick(View view) {
-//        Calendar cal = Calendar.getInstance();
-//        new DatePickerDialog(this, onDateSetListener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE)).show();
-//    }
-
-
-//    TextView vDate = findViewById(R.id.vEndDate);
-//    vDate.setOnClickListener(new View.OnClickListener(){
-//        @Override
-//        public void onClick(View view) {
-//            Intent intent = new Intent(WritePostActivity.this, DatePickerActivity.class);
-//            startActivityForResult(intent, ACT_SET_BIRTH);
-//        }
-//    });
 }

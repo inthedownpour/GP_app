@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import sdk.chat.gp_app.R;
 import sdk.chat.gp_app.listener.OnPostListener;
@@ -20,18 +21,27 @@ public class PostActivity extends BasicActivity {
     private ReadContentsVIew readContentsVIew;
     private LinearLayout contentsLayout;
 
+    //수정
+    private TextView endDateTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post);
+        setContentView(R.layout.activity_post); //activity_post와 연결됨
 
         postInfo = (PostInfo) getIntent().getSerializableExtra("postInfo");
-        contentsLayout = findViewById(R.id.contentsLayout);
-        readContentsVIew = findViewById(R.id.readContentsView);
+        //getIntent: 이 액티비티에서 시작한 intent를 리턴
+        //getSerializableExtra: intent에서 확장 데이터를 검색
 
-        firebaseHelper = new FirebaseHelper(this);
+        contentsLayout = findViewById(R.id.contentsLayout); //id가 activitiy_post / item_post 둘다 있음 //????
+        readContentsVIew = findViewById(R.id.readContentsView); //id가 activitiy_write_post / view_post
+
+        //수정
+        endDateTextView = findViewById(R.id.endDateTextView);
+
+        firebaseHelper = new FirebaseHelper(this); //firebase 연결
         firebaseHelper.setOnPostListener(onPostListener);
-        uiUpdate();
+        uiUpdate(); //업데이트
     }
 
     @Override
@@ -51,6 +61,8 @@ public class PostActivity extends BasicActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.post, menu);
+        //getMenuInflater: MenuInflater와 content 리턴?
+        //inflate: xml로 미리 정의된 view(또는 menu 등)을 실제 객체화 시키는 용도
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -83,6 +95,7 @@ public class PostActivity extends BasicActivity {
     private void uiUpdate(){
         setToolbarTitle(postInfo.getTitle());
         readContentsVIew.setPostInfo(postInfo);
+
     }
 
     private void myStartActivity(Class c, PostInfo postInfo) {

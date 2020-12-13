@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--게시글 화면에서 볼 때 나타나는 xml-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -24,15 +25,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/readContentsView">
             </sdk.chat.gp_app.view.ReadContentsVIew>
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/activity_post_endDate"
-                android:text="Date"/>
-
-
         </LinearLayout>
+
+
 
 
     </ScrollView>

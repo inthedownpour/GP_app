@@ -159,12 +159,16 @@ public class HomeFragment extends Fragment {
         updating = true;
         Date date = postList.size() == 0 || clear ? new Date() : postList.get(postList.size() - 1).getCreatedAt();
         CollectionReference collectionReference = firebaseFirestore.collection("posts");
+
+        //수정
+        //CollectionReference collectionReference1 = firebaseFirestore.collection("endData");
+
         collectionReference.orderBy("createdAt", Query.Direction.DESCENDING).whereLessThan("createdAt", date).limit(10).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            if(clear){
+                            if (clear) {
                                 postList.clear();
                             }
                             for (QueryDocumentSnapshot document : task.getResult()) {
@@ -175,7 +179,12 @@ public class HomeFragment extends Fragment {
                                         (ArrayList<String>) document.getData().get("formats"),
                                         document.getData().get("publisher").toString(),
                                         new Date(document.getDate("createdAt").getTime()),
-                                        document.getId()));
+                                        document.getId(), (String) document.getData().get("endDate"), (String) document.getData().get("peopleNumber")));
+                                Log.d((String) document.getData().get("endData"), "endData HomeFragment179: " + (String) document.getData().get("endData"));
+
+                                ////////////////////////이거 추가하니까 실행안됨
+
+
                             }
                             homeAdapter.notifyDataSetChanged();
                         } else {
@@ -184,6 +193,7 @@ public class HomeFragment extends Fragment {
                         updating = false;
                     }
                 });
+
     }
 
 

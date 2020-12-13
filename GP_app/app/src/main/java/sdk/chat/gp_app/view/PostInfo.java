@@ -1,5 +1,7 @@
 package sdk.chat.gp_app.view;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,22 +18,28 @@ public class PostInfo implements Serializable {
 
     //수정 - endDate
     private String endDate;
+    private String peopleNumber;
 
-    public PostInfo(String title, ArrayList<String> contents, ArrayList<String> formats, String publisher, Date createdAt, String id){
+    public PostInfo(String title, ArrayList<String> contents, ArrayList<String> formats, String publisher, Date createdAt, String id, String endDate, String peopleNumber){
         this.title = title;
         this.contents = contents;
         this.formats = formats;
         this.publisher = publisher;
         this.createdAt = createdAt;
         this.id = id;
+        this.endDate = endDate;
+        this.peopleNumber = peopleNumber;
     }
 
-    public PostInfo(String title, ArrayList<String> contents, ArrayList<String> formats, String publisher, Date createdAt){
+    public PostInfo(String title, ArrayList<String> contents, ArrayList<String> formats, String publisher, Date createdAt, String endDate, String peopleNumber){
         this.title = title;
         this.contents = contents;
         this.formats = formats;
         this.publisher = publisher;
         this.createdAt = createdAt;
+        this.endDate = endDate;
+        this.peopleNumber = peopleNumber;
+
     }
 
     public Map<String, Object> getPostInfo(){
@@ -42,6 +50,7 @@ public class PostInfo implements Serializable {
         docData.put("publisher",publisher);
         docData.put("createdAt",createdAt);
         docData.put("endDate", endDate);
+        docData.put("peopleNumber", peopleNumber);
         return  docData;
     }
 
@@ -51,30 +60,36 @@ public class PostInfo implements Serializable {
     public void setTitle(String title){
         this.title = title;
     }
+
     public ArrayList<String> getContents(){
+        Log.d(String.valueOf(contents), "contents PostInfo60:" + contents);
         return this.contents;
     }
     public void setContents(ArrayList<String> contents){
         this.contents = contents;
     }
+
     public ArrayList<String> getFormats(){
         return this.formats;
     }
     public void setFormats(ArrayList<String> formats){
         this.formats = formats;
     }
+
     public String getPublisher(){
         return this.publisher;
     }
     public void setPublisher(String publisher){
         this.publisher = publisher;
     }
+
     public Date getCreatedAt(){
         return this.createdAt;
     }
     public void setCreatedAt(Date createdAt){
         this.createdAt = createdAt;
     }
+
     public String getId(){
         return this.id;
     }
@@ -82,4 +97,18 @@ public class PostInfo implements Serializable {
         this.id = id;
     }
 
+    public String getEndDate() {
+        Log.d(endDate, "endData PostInfo95:" + endDate);
+        return this.endDate;
+    }
+    public void setEndDate (String endDate){
+        this.endDate = endDate;
+    }
+
+    public String getPeopleNumber(){
+        return this.peopleNumber;
+    }
+    public void setPeopleNumber (String peopleNumber) {
+        this.peopleNumber = peopleNumber;
+    }
 }

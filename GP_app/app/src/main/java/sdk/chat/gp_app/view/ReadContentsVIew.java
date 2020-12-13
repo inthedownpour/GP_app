@@ -3,6 +3,7 @@ package sdk.chat.gp_app.view;
 import android.content.Context;
 import android.net.Uri;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -58,12 +59,23 @@ public class ReadContentsVIew extends LinearLayout {
 
     public void setPostInfo(PostInfo postInfo){
         TextView createdAtTextView = findViewById(R.id.createAtTextView);
+
+        //수정
+        //TextView endDateTextView = findViewsWithText(R.id.endDateTextView);
+
+
         createdAtTextView.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(postInfo.getCreatedAt()));
 
         LinearLayout contentsLayout = findViewById(R.id.contentsLayout);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         ArrayList<String> contentsList = postInfo.getContents();
         ArrayList<String> formatList = postInfo.getFormats();
+
+        //수정
+        String EndDateList = postInfo.getEndDate();
+        String EndDateList2 = postInfo.getEndDate();
+
+        Log.d(EndDateList, "endDataList ReadContentsView76: " + EndDateList);
 
         for (int i = 0; i < contentsList.size(); i++) {
             if (i == moreIndex) {
@@ -77,10 +89,20 @@ public class ReadContentsVIew extends LinearLayout {
             String contents = contentsList.get(i);
             String formats = formatList.get(i);
 
+            //수정
+            String endDate = EndDateList;
+            String peopleNumber = EndDateList2;
+            Log.d(endDate, "endData ReadContentsView92: " + endDate);
+            //String endDate =
+
             if(formats.equals("image")){
                 ImageView imageView = (ImageView)layoutInflater.inflate(R.layout.view_contents_image, this, false);
                 contentsLayout.addView(imageView);
                 Glide.with(this).load(contents).override(1000).thumbnail(0.1f).into(imageView);
+
+                //수정
+                //Glide.with(this).load(endDate).override(1000).thumbnail(0.1f).into(imageView);
+
             }else if(formats.equals("video")){
                 final PlayerView playerView = (PlayerView) layoutInflater.inflate(R.layout.view_contents_player, this, false);
 
@@ -88,6 +110,11 @@ public class ReadContentsVIew extends LinearLayout {
                         Util.getUserAgent(context, getResources().getString(R.string.app_name)));
                 MediaSource videoSource = new ProgressiveMediaSource.Factory(dataSourceFactory)
                         .createMediaSource(Uri.parse(contents));
+
+                //수정
+                MediaSource videoSource2 = new ProgressiveMediaSource.Factory(dataSourceFactory)
+                        .createMediaSource(Uri.parse(endDate));
+
 
                 SimpleExoPlayer player = ExoPlayerFactory.newSimpleInstance(context);
 
@@ -108,6 +135,20 @@ public class ReadContentsVIew extends LinearLayout {
                 TextView textView = (TextView) layoutInflater.inflate(R.layout.view_contents_text, this, false);
                 textView.setText(contents);
                 contentsLayout.addView(textView);
+
+
+                //수정
+                TextView textView2 = (TextView) layoutInflater.inflate(R.layout.view_contents_button, this, false);
+                //endDate = findViewById(R.id.endDate).toString();
+                textView2.setText(endDate);
+                Log.d(endDate, "endData ReadContentsView139: " + endDate);
+                contentsLayout.addView(textView2);
+
+                TextView textView3 = (TextView) layoutInflater.inflate(R.layout.view_contents_button, this, false);
+                //endDate = findViewById(R.id.endDate).toString();
+                textView2.setText(peopleNumber);
+                contentsLayout.addView(textView3);
+
             }
         }
     }
