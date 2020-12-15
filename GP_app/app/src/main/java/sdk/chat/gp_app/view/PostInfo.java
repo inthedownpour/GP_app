@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PostInfo implements Serializable {
+
     private String title;
     private ArrayList<String> contents;
     private ArrayList<String> formats;

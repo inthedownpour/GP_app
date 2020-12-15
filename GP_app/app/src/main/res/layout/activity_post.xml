@@ -23,13 +23,17 @@
             <sdk.chat.gp_app.view.ReadContentsVIew
                 android:id="@+id/readContentsView"
                 android:layout_width="match_parent"
-                android:layout_height="151dp"></sdk.chat.gp_app.view.ReadContentsVIew>
+                android:layout_height="wrap_content">
+
+            </sdk.chat.gp_app.view.ReadContentsVIew>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Comment"
-                android:id="@+id/commentButton"/>
+                android:text="댓글 작성하기"
+                android:id="@+id/commentButton"
+                android:background="@drawable/ic_button_background"/>
+
 
         </LinearLayout>
 

@@ -30,7 +30,7 @@
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                tools:text="타이블" />
+                tools:text="제목" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/menu"
@@ -64,6 +64,9 @@
         </sdk.chat.gp_app.view.ReadContentsVIew>
 
 
+
+
     </LinearLayout>
+
 
 </androidx.cardview.widget.CardView>

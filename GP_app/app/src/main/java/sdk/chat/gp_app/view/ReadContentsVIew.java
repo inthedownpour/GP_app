@@ -103,6 +103,17 @@ public class ReadContentsVIew extends LinearLayout {
                 //수정
                 //Glide.with(this).load(endDate).override(1000).thumbnail(0.1f).into(imageView);
 
+                TextView textView2 = (TextView) layoutInflater.inflate(R.layout.view_contents_button, this, false);
+                //endDate = findViewById(R.id.endDate).toString();
+                textView2.setText(endDate);
+                Log.d(endDate, "endData ReadContentsView139: " + endDate);
+                contentsLayout.addView(textView2);
+
+                TextView textView3 = (TextView) layoutInflater.inflate(R.layout.view_contents_button, this, false);
+                //endDate = findViewById(R.id.endDate).toString();
+                textView3.setText(peopleNumber);
+                contentsLayout.addView(textView3);
+
             }else if(formats.equals("video")){
                 final PlayerView playerView = (PlayerView) layoutInflater.inflate(R.layout.view_contents_player, this, false);
 
@@ -137,20 +148,15 @@ public class ReadContentsVIew extends LinearLayout {
                 contentsLayout.addView(textView);
 
 
-                //수정
-                TextView textView2 = (TextView) layoutInflater.inflate(R.layout.view_contents_button, this, false);
-                //endDate = findViewById(R.id.endDate).toString();
-                textView2.setText(endDate);
-                Log.d(endDate, "endData ReadContentsView139: " + endDate);
-                contentsLayout.addView(textView2);
 
-                TextView textView3 = (TextView) layoutInflater.inflate(R.layout.view_contents_button, this, false);
-                //endDate = findViewById(R.id.endDate).toString();
-                textView3.setText(peopleNumber);
-                contentsLayout.addView(textView3);
+
+                //수정
+
 
             }
+
         }
+
     }
 
     public ArrayList<SimpleExoPlayer> getPlayerArrayList() {

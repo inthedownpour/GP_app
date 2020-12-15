@@ -2,8 +2,11 @@
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/contentsEditText"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="200sp"
+    android:layout_height="30dp"
     android:gravity="top"
-    android:hint="내용"
+    android:hint="인원수"
+    android:textSize="15sp"
+    android:textStyle="bold"
+    android:textColor="#1F3A01"
     android:inputType="textMultiLine" />
