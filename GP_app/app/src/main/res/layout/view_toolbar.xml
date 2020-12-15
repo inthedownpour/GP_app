@@ -8,5 +8,8 @@
     android:elevation="4dp"
     android:theme="@style/AppTheme"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    app:titleTextColor="#FFFFFF" />
+    app:titleTextColor="#000000">
+
+
+</androidx.appcompat.widget.Toolbar>
 

@@ -81,7 +81,7 @@
                     android:gravity="center"
                     android:hint="인원수 입력"
                     android:layout_marginTop="10dp"
-
+                    android:inputType="number"
                     android:background="@drawable/ic_button_background"/>
 
             </LinearLayout>
