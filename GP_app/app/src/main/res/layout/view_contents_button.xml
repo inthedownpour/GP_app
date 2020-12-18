@@ -8,5 +8,5 @@
     android:hint="인원수"
     android:textSize="15sp"
     android:textStyle="bold"
-    android:textColor="#1F3A01"
+    android:textColor="#F44336"
     android:inputType="textMultiLine" />

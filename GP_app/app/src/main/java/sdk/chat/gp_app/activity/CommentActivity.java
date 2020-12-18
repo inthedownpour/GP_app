@@ -75,8 +75,8 @@ public class CommentActivity extends BasicActivity {
 
 
         final ArrayList<CommentListView> list = new ArrayList<>();
-        list.add(new CommentListView(R.drawable.world, "damin", "youoyuoo"));
-        list.add(new CommentListView(R.drawable.world, "da", "dadadad"));
+        list.add(new CommentListView(R.drawable.world, "1212", "사고싶어요!"));
+        list.add(new CommentListView(R.drawable.world, "AAA", "저도 사고싶어요"));
 
         final ListView listView = findViewById(R.id.listView);
         final CommentListAdapter adapter = new CommentListAdapter(CommentActivity.this, list);
@@ -88,7 +88,7 @@ public class CommentActivity extends BasicActivity {
             public void onClick(View view) {
                 String inputstr = comment.getText().toString();
                 Log.d(inputstr, "inputstr: " + inputstr);
-                list.add(new CommentListView(R.drawable.world, "AA", inputstr));
+                list.add(new CommentListView(R.drawable.world, "damin", inputstr));
                 //adapter.notifyDataSetChanged();
 
                 CommentListAdapter adapter = new CommentListAdapter(CommentActivity.this, list);
