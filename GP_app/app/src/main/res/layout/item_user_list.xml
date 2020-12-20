@@ -37,16 +37,16 @@
                 android:id="@+id/nameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="김철수"
+                tools:text="김땡땡"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/addressTextView"
+                android:id="@+id/phonenumTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="경기도" />
+                tools:text="010-0000-1111" />
         </LinearLayout>
 
     </LinearLayout>
