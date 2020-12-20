@@ -59,6 +59,7 @@ public class UserListFragment extends Fragment {
         userListAdapter = new UserListAdapter(getActivity(), userList);
 
         final RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        //view.findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
