@@ -60,14 +60,14 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MainVi
         CardView cardView = holder.cardView;
         ImageView photoImageVIew = cardView.findViewById(R.id.photoImageVIew);
         TextView nameTextView = cardView.findViewById(R.id.nameTextView);
-        TextView addressTextView = cardView.findViewById(R.id.addressTextView);
+        TextView phoneNumberTextView = cardView.findViewById(R.id.phonenumTextView);
 
         UserInfo userInfo = mDataset.get(position);
         if(mDataset.get(position).getPhotoUrl() != null){
             Glide.with(activity).load(mDataset.get(position).getPhotoUrl()).centerCrop().override(500).into(photoImageVIew);
         }
         nameTextView.setText(userInfo.getName());
-        addressTextView.setText(userInfo.getAddress());
+        phoneNumberTextView.setText(userInfo.getPhoneNumber());
     }
 
     @Override
