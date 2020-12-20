@@ -41,7 +41,7 @@ public class UserInfoFragment extends Fragment {
         final TextView nameTextView = view.findViewById(R.id.nameTextView);
         final TextView phoneNumberTextView = view.findViewById(R.id.phoneNumberTextView);
         final TextView birthDayTextView = view.findViewById(R.id.birthDayTextView);
-        final TextView addressTextView = view.findViewById(R.id.phonenumTextView);
+        final TextView addressTextView = view.findViewById(R.id.addressTextView);
 
         DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
