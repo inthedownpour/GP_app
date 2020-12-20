@@ -25,9 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class UserInfoFragment extends Fragment {
     private static final String TAG = "UserInfoFragment";
 
-    public UserInfoFragment() {
-        // Required empty public constructor
-    }
+    public UserInfoFragment() {    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +41,7 @@ public class UserInfoFragment extends Fragment {
         final TextView nameTextView = view.findViewById(R.id.nameTextView);
         final TextView phoneNumberTextView = view.findViewById(R.id.phoneNumberTextView);
         final TextView birthDayTextView = view.findViewById(R.id.birthDayTextView);
-        final TextView addressTextView = view.findViewById(R.id.addressTextView);
+        final TextView addressTextView = view.findViewById(R.id.phonenumTextView);
 
         DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -66,7 +64,7 @@ public class UserInfoFragment extends Fragment {
                         }
                     }
                 } else {
-                    Log.d(TAG, "get failed with ", task.getException());
+                    Log.d(TAG, "Get failed with ", task.getException());
                 }
             }
         });
