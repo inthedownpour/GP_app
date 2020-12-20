@@ -68,11 +68,9 @@ public class WritePostActivity extends BasicActivity {
     private PostInfo postInfo;
     private int pathCount, successCount;
 
-    //수정파트 - endDate
     private EditText endDate;
     private EditText peopleNumber;
 
-    //수정파트
     Calendar myCalendar = Calendar.getInstance();
 
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
@@ -91,8 +89,6 @@ public class WritePostActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_post);
         setToolbarTitle("게시글 작성");
-
-        //수정파트
         EditText et_Date = (EditText) findViewById(R.id.endDate);
         et_Date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,9 +96,6 @@ public class WritePostActivity extends BasicActivity {
                 new DatePickerDialog(WritePostActivity.this, myDatePicker, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
-
-        ////
 
 
         parent = findViewById(R.id.contentsLayout); //LinearLayout
@@ -128,7 +121,6 @@ public class WritePostActivity extends BasicActivity {
         buttonsBackgroundLayout.setOnClickListener(onClickListener);
         contentsEditText.setOnFocusChangeListener(onFocusChangeListener);
 
-        //수정파트 - endDate
         endDate.setOnFocusChangeListener(onFocusChangeListener);
         peopleNumber.setOnFocusChangeListener(onFocusChangeListener);
 
@@ -142,7 +134,6 @@ public class WritePostActivity extends BasicActivity {
             }
         });
 
-        //수정파트 - endDate
         endDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
@@ -286,9 +277,6 @@ public class WritePostActivity extends BasicActivity {
             final ArrayList<String> contentsList = new ArrayList<>();
             final ArrayList<String> formatList = new ArrayList<>();
 
-            //수정
-            //final ArrayList<String> EndDateList = new ArrayList<>();//new ArrayList<>();
-
             user = FirebaseAuth.getInstance().getCurrentUser();
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
@@ -321,8 +309,7 @@ public class WritePostActivity extends BasicActivity {
                             formatList.add("image");
                         } else if (isVideoFile(path)) {
                             formatList.add("video");
-                        }//수정파트
-                        //else if()
+                        }
                         else {
                             formatList.add("text");
                         }
@@ -428,8 +415,6 @@ public class WritePostActivity extends BasicActivity {
                     }
                 } else if (i == 0) {
                     contentsEditText.setText(contents);
-                    //수정파트 - endDate
-                    //endDate.setText(contents);
                 }
             }
         }

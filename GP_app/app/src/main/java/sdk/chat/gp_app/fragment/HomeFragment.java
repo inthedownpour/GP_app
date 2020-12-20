@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import sdk.chat.gp_app.R;
 import sdk.chat.gp_app.view.PostInfo;
 import sdk.chat.gp_app.activity.WritePostActivity;
@@ -40,7 +39,6 @@ public class HomeFragment extends Fragment {
     private boolean topScrolled;
 
     public HomeFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -127,12 +125,7 @@ public class HomeFragment extends Fragment {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                /*
-                case R.id.logoutButton:
-                    FirebaseAuth.getInstance().signOut();
-                    myStartActivity(SignUpActivity.class);
-                    break;
-                */
+
                 case R.id.floatingActionButton:
                     myStartActivity(WritePostActivity.class);
                     break;
@@ -160,8 +153,6 @@ public class HomeFragment extends Fragment {
         Date date = postList.size() == 0 || clear ? new Date() : postList.get(postList.size() - 1).getCreatedAt();
         CollectionReference collectionReference = firebaseFirestore.collection("posts");
 
-        //수정
-        //CollectionReference collectionReference1 = firebaseFirestore.collection("endData");
 
         collectionReference.orderBy("createdAt", Query.Direction.DESCENDING).whereLessThan("createdAt", date).limit(10).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -181,9 +172,6 @@ public class HomeFragment extends Fragment {
                                         new Date(document.getDate("createdAt").getTime()),
                                         document.getId(), (String) document.getData().get("endDate"), (String) document.getData().get("peopleNumber")));
                                 Log.d((String) document.getData().get("endData"), "endData HomeFragment179: " + (String) document.getData().get("endData"));
-
-                                ////////////////////////이거 추가하니까 실행안됨
-
 
                             }
                             homeAdapter.notifyDataSetChanged();

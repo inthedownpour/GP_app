@@ -60,10 +60,6 @@ public class ReadContentsVIew extends LinearLayout {
     public void setPostInfo(PostInfo postInfo){
         TextView createdAtTextView = findViewById(R.id.createAtTextView);
 
-        //수정
-        //TextView endDateTextView = findViewsWithText(R.id.endDateTextView);
-
-
         createdAtTextView.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(postInfo.getCreatedAt()));
 
         LinearLayout contentsLayout = findViewById(R.id.contentsLayout);
@@ -71,7 +67,6 @@ public class ReadContentsVIew extends LinearLayout {
         ArrayList<String> contentsList = postInfo.getContents();
         ArrayList<String> formatList = postInfo.getFormats();
 
-        //수정
         String EndDateList = postInfo.getEndDate();
         String EndDateList2 = postInfo.getPeopleNumber();
 
@@ -89,19 +84,15 @@ public class ReadContentsVIew extends LinearLayout {
             String contents = contentsList.get(i);
             String formats = formatList.get(i);
 
-            //수정
             String endDate = EndDateList;
             String peopleNumber = EndDateList2;
             Log.d(endDate, "endData ReadContentsView92: " + endDate);
-            //String endDate =
 
             if(formats.equals("image")){
                 ImageView imageView = (ImageView)layoutInflater.inflate(R.layout.view_contents_image, this, false);
                 contentsLayout.addView(imageView);
                 Glide.with(this).load(contents).override(1000).thumbnail(0.1f).into(imageView);
 
-                //수정
-                //Glide.with(this).load(endDate).override(1000).thumbnail(0.1f).into(imageView);
 
                 TextView textView2 = (TextView) layoutInflater.inflate(R.layout.view_contents_button, this, false);
                 //endDate = findViewById(R.id.endDate).toString();
@@ -122,11 +113,6 @@ public class ReadContentsVIew extends LinearLayout {
                 MediaSource videoSource = new ProgressiveMediaSource.Factory(dataSourceFactory)
                         .createMediaSource(Uri.parse(contents));
 
-                //수정
-//                MediaSource videoSource2 = new ProgressiveMediaSource.Factory(dataSourceFactory)
-//                        .createMediaSource(Uri.parse(endDate));
-
-
                 SimpleExoPlayer player = ExoPlayerFactory.newSimpleInstance(context);
 
                 player.prepare(videoSource);
@@ -146,12 +132,6 @@ public class ReadContentsVIew extends LinearLayout {
                 TextView textView = (TextView) layoutInflater.inflate(R.layout.view_contents_text, this, false);
                 textView.setText(contents);
                 contentsLayout.addView(textView);
-
-
-
-
-                //수정
-
 
             }
 

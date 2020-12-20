@@ -17,7 +17,6 @@ public class PostInfo implements Serializable {
     private Date createdAt;
     private String id;
 
-    //수정 - endDate
     private String endDate;
     private String peopleNumber;
 
